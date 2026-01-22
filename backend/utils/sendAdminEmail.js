@@ -20,7 +20,7 @@ const sendAdminEmail = async (order) => {
     await transporter.sendMail({
       from: `"Jewellery Store" <${process.env.ADMIN_EMAIL}>`,
       to: process.env.ADMIN_EMAIL,
-      subjet: "New Order Placed",
+      subject: "New Order Placed",
       text: `
             NEW ORDER 🎉
 
