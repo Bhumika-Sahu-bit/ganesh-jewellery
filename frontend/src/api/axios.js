@@ -2,7 +2,11 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: `${import.meta.env.VITE_API_URL}/api`,
+
+  
 });
+
+console.log("API URL:", import.meta.env.VITE_API_URL);
 
 // attach the token to each request if available
 api.interceptors.request.use((req) => {
