@@ -191,6 +191,8 @@ export const checkoutBuyNow = async (req, res) => {
       message: "Order placed successfully",
       orderId: order._id,
     });
+
+    console.log("✅ Admin email sent successfully");
   } catch (error) {
     console.error("Checkout error:", error);
     res.status(500).json({ message: "Server error" });
