@@ -13,60 +13,60 @@ const ProductInfoBadges = () => {
     <>
       {/* ================= INFO STRIP ================= */}
       <div className="border-y py-4 mb-6">
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-2">
 
-          {/* No Returns */}
+          {/* ================= ITEM ================= */}
           <button
             onClick={() => setActivePopup("noReturn")}
-            className="flex items-start gap-3 text-left"
+            className="flex flex-col items-center text-center gap-2
+                       md:flex-row md:items-center md:text-left md:gap-3"
           >
+            {/* Icon */}
             <div className="w-10 h-10 shrink-0 rounded-full bg-gray-100 flex items-center justify-center">
               <FaUndoAlt className="text-blue-600 text-lg" />
             </div>
 
-            <div className="flex-1">
-              <p className="text-sm font-medium leading-tight">
-                No returns
-              </p>
-            </div>
+            {/* Text */}
+            <p className="text-sm font-medium leading-snug md:whitespace-nowrap">
+              No returns
+            </p>
 
-            <FaChevronRight className="text-gray-400 text-sm mt-1 shrink-0" />
+            {/* Arrow */}
+            <FaChevronRight className="text-gray-400 text-sm shrink-0 hidden md:block" />
           </button>
 
-          {/* Payment */}
+          {/* ================= ITEM ================= */}
           <button
             onClick={() => setActivePopup("payment")}
-            className="flex items-start gap-3 text-left"
+            className="flex flex-col items-center text-center gap-2
+                       md:flex-row md:items-center md:text-left md:gap-3"
           >
             <div className="w-10 h-10 shrink-0 rounded-full bg-gray-100 flex items-center justify-center">
               <FaCreditCard className="text-blue-600 text-lg" />
             </div>
 
-            <div className="flex-1">
-              <p className="text-sm font-medium leading-tight">
-                Payment allowed
-              </p>
-            </div>
+            <p className="text-sm font-medium leading-snug md:whitespace-nowrap">
+              Payment allowed
+            </p>
 
-            <FaChevronRight className="text-gray-400 text-sm mt-1 shrink-0" />
+            <FaChevronRight className="text-gray-400 text-sm shrink-0 hidden md:block" />
           </button>
 
-          {/* Quality */}
+          {/* ================= ITEM ================= */}
           <button
             onClick={() => setActivePopup("quality")}
-            className="flex items-start gap-3 text-left"
+            className="flex flex-col items-center text-center gap-2
+                       md:flex-row md:items-center md:text-left md:gap-3"
           >
             <div className="w-10 h-10 shrink-0 rounded-full bg-gray-100 flex items-center justify-center">
               <FaShieldAlt className="text-blue-600 text-lg" />
             </div>
 
-            <div className="flex-1">
-              <p className="text-sm font-medium leading-tight">
-                Quality assured
-              </p>
-            </div>
+            <p className="text-sm font-medium leading-snug md:whitespace-nowrap">
+              Quality assured
+            </p>
 
-            <FaChevronRight className="text-gray-400 text-sm mt-1 shrink-0" />
+            <FaChevronRight className="text-gray-400 text-sm shrink-0 hidden md:block" />
           </button>
 
         </div>
@@ -91,7 +91,6 @@ const ProductInfoBadges = () => {
                 </h3>
                 <p className="text-sm text-gray-600">
                   This product cannot be returned or exchanged after delivery.
-                  Please review product details before ordering.
                 </p>
               </>
             )}
@@ -114,8 +113,7 @@ const ProductInfoBadges = () => {
                   Quality Assurance
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Products are quality-checked to ensure reliability and
-                  customer satisfaction.
+                  All products go through strict quality checks.
                 </p>
               </>
             )}
