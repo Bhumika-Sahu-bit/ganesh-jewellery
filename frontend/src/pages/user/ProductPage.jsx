@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../api/axios";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { FaShoppingCart, FaBolt, FaArrowLeft } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaBolt,
+  FaArrowLeft,
+  FaShareAlt,
+} from "react-icons/fa";
 
 import Navbar from "../../components/user/Navbar";
 import Footer from "../../components/user/Footer";
@@ -10,7 +15,11 @@ import BottomFooter from "../../components/user/BottomFooter";
 import Sidebar from "../../components/user/Sidebar";
 import ProductInfoBadges from "../../components/user/ProductInfoBadges";
 
-import { notifySuccess, notifyError, notifyWarning } from "../../utils/notify.js";
+import {
+  notifySuccess,
+  notifyError,
+  notifyWarning,
+} from "../../utils/notify.js";
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -37,14 +46,12 @@ const ProductPage = () => {
       setSelectedImage(productData.images?.[0]?.url || "");
 
       const wishlistRes = await api.get("/wishlist");
-      const wishlistIds = wishlistRes.data.map(p => p._id);
+      const wishlistIds = wishlistRes.data.map((p) => p._id);
       setWishlistAdded(wishlistIds.includes(productId));
 
       const cartRes = await api.get("/cart");
-      const cartIds =
-        cartRes.data?.items?.map(i => i.product?._id) || [];
+      const cartIds = cartRes.data?.items?.map((i) => i.product?._id) || [];
       setAddedToCart(cartIds.includes(productId));
-
     } catch (error) {
       console.error("Product load error", error);
     } finally {
@@ -54,14 +61,13 @@ const ProductPage = () => {
 
   const handleAddToCart = async () => {
     try {
-        await api.post("/cart/add", { productId, quantity: 1 });
-    setAddedToCart(true);
-    notifySuccess("Product added to cart");
+      await api.post("/cart/add", { productId, quantity: 1 });
+      setAddedToCart(true);
+      notifySuccess("Product added to cart");
     } catch (error) {
       console.error("Add to cart error", error);
       notifyError("Failed to add product to cart");
     }
-    
   };
 
   const handleBuyNow = async () => {
@@ -89,21 +95,40 @@ const ProductPage = () => {
 
   const handleWishlist = async () => {
     try {
-       if (!wishlistAdded) {
-      await api.post("/wishlist/add", { productId });
-      setWishlistAdded(true);
-      notifySuccess("Added to wishlist ❤️");
-    } else {
-      await api.delete(`/wishlist/remove/${productId}`);
-      setWishlistAdded(false);
-      notifySuccess("Removed from wishlist 💔");
-    }
+      if (!wishlistAdded) {
+        await api.post("/wishlist/add", { productId });
+        setWishlistAdded(true);
+        notifySuccess("Added to wishlist ❤️");
+      } else {
+        await api.delete(`/wishlist/remove/${productId}`);
+        setWishlistAdded(false);
+        notifySuccess("Removed from wishlist 💔");
+      }
     } catch (error) {
       notifyError("Wishlist action failed");
       console.error("Wishlist error", error);
     }
-   
   };
+
+  const handleShare = async () => {
+    if(!product) return ;
+
+    const shareData = {
+    title: product.name,
+    text: `Check out this product:\n${product.name}\n₹${finalPrice}`,
+    url: window.location.href,
+  };
+
+  try {
+    if(navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      notifyWarning("Sharing not supported on this device");
+    }
+  } catch (error) {
+    console.log("User cancelled share", error);
+  }
+  }
 
   if (loading) return <p className="text-center mt-10">Loading product...</p>;
   if (!product) return <p className="text-center mt-10">Product not found</p>;
@@ -116,12 +141,12 @@ const ProductPage = () => {
   const whatsappNumber = "916265580736"; // <-- Replace with your admin number
   const whatsappMessage = encodeURIComponent(
     `Hello! I want to enquire about this product:\n\n` +
-    `Product Name: ${product.name}\n` +
-    `Price: ₹${finalPrice}\n` +
-    `Product Code: ${product.productCode || product._id.slice(-6)}\n` +
-    `Category: ${product.category?.name || "N/A"}\n` +
-    `SubCategory: ${product.subCategory?.name || "N/A"}\n` +
-    `Product Link: ${window.location.href}`
+      `Product Name: ${product.name}\n` +
+      `Price: ₹${finalPrice}\n` +
+      `Product Code: ${product.productCode || product._id.slice(-6)}\n` +
+      `Category: ${product.category?.name || "N/A"}\n` +
+      `SubCategory: ${product.subCategory?.name || "N/A"}\n` +
+      `Product Link: ${window.location.href}`,
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
@@ -142,13 +167,14 @@ const ProductPage = () => {
           </button>
 
           {/* Stock Badge */}
-          <div className={`px-4 py-2 rounded-full font-medium ${product.stock > 0 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
+          <div
+            className={`px-4 py-2 rounded-full font-medium ${product.stock > 0 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+          >
             {product.stock > 0 ? "In Stock" : "Out of Stock"}
           </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
-
           {/* ================= IMAGE SECTION ================= */}
           <div className="relative">
             <img
@@ -158,16 +184,26 @@ const ProductPage = () => {
             />
 
             {/* Wishlist */}
-            <button
-              onClick={handleWishlist}
-              className="absolute top-4 right-4 bg-white p-3 rounded-full shadow"
-            >
-              {wishlistAdded ? (
-                <AiFillHeart className="text-red-600 text-2xl" />
-              ) : (
-                <AiOutlineHeart className="text-gray-600 text-2xl" />
-              )}
-            </button>
+            <div className="absolute top-4 right-4 flex flex-col gap-3">
+              <button
+                onClick={handleWishlist}
+                className="absolute top-4 right-4 bg-white p-3 rounded-full shadow"
+              >
+                {wishlistAdded ? (
+                  <AiFillHeart className="text-red-600 text-2xl" />
+                ) : (
+                  <AiOutlineHeart className="text-gray-600 text-2xl" />
+                )}
+              </button>
+
+              {/* share */}
+              <button
+                onClick={handleShare}
+                className="bg-white p-3 rounded-full shadow"
+              >
+                <FaShareAlt className="text-gray-700 text-xl" />
+              </button>
+            </div>
 
             {/* Thumbnails */}
             <div className="flex gap-3 mt-4">
@@ -193,9 +229,7 @@ const ProductPage = () => {
               PRODUCT CODE: {product.productCode || product._id.slice(-6)}
             </p>
 
-            <h1 className="text-3xl font-semibold mb-3">
-              {product.name}
-            </h1>
+            <h1 className="text-3xl font-semibold mb-3">{product.name}</h1>
 
             <p className="text-sm text-gray-500 mb-4">
               {product.category?.name}
@@ -204,9 +238,7 @@ const ProductPage = () => {
 
             {/* Price */}
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-3xl font-bold">
-                ₹{finalPrice}
-              </span>
+              <span className="text-3xl font-bold">₹{finalPrice}</span>
               {product.discount > 0 && (
                 <>
                   <span className="line-through text-gray-400">
@@ -234,8 +266,8 @@ const ProductPage = () => {
               </p>
             </div>
 
-              {/* Trust / Info Section */}
-              <ProductInfoBadges />
+            {/* Trust / Info Section */}
+            <ProductInfoBadges />
 
             {/* Buttons */}
             <div className="flex gap-4 mt-6 flex-wrap">
@@ -271,7 +303,6 @@ const ProductPage = () => {
               </a>
             </div>
           </div>
-
         </div>
       </div>
 
