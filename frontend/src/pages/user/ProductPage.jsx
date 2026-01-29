@@ -8,6 +8,7 @@ import Navbar from "../../components/user/Navbar";
 import Footer from "../../components/user/Footer";
 import BottomFooter from "../../components/user/BottomFooter";
 import Sidebar from "../../components/user/Sidebar";
+import ProductInfoBadges from "../../components/user/ProductInfoBadges";
 
 import { notifySuccess, notifyError, notifyWarning } from "../../utils/notify.js";
 
@@ -232,6 +233,9 @@ const ProductPage = () => {
                 {product.shortDesc || product.description}
               </p>
             </div>
+
+              {/* Trust / Info Section */}
+              <ProductInfoBadges />
 
             {/* Buttons */}
             <div className="flex gap-4 mt-6 flex-wrap">
