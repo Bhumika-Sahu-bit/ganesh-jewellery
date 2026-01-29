@@ -184,10 +184,10 @@ const ProductPage = () => {
             />
 
             {/* Wishlist */}
-            <div className="absolute top-4 right-4 flex flex-col gap-3">
+            <div className="absolute top-4 right-4 flex flex-col gap-3 z-10">
               <button
                 onClick={handleWishlist}
-                className="absolute top-4 right-4 bg-white p-3 rounded-full shadow"
+                className="bg-white p-3 rounded-full shadow hover:scale-105 transition"
               >
                 {wishlistAdded ? (
                   <AiFillHeart className="text-red-600 text-2xl" />
@@ -199,7 +199,7 @@ const ProductPage = () => {
               {/* share */}
               <button
                 onClick={handleShare}
-                className="bg-white p-3 rounded-full shadow"
+                className="bg-white p-3 rounded-full shadow hover:scale-105 transition"
               >
                 <FaShareAlt className="text-gray-700 text-xl" />
               </button>
