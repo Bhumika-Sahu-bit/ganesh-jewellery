@@ -1,8 +1,8 @@
 import { useState } from "react";
 import {
   FaUndoAlt,
-  FaShieldAlt,
   FaCreditCard,
+  FaShieldAlt,
   FaChevronRight,
 } from "react-icons/fa";
 
@@ -12,55 +12,61 @@ const ProductInfoBadges = () => {
   return (
     <>
       {/* ================= INFO STRIP ================= */}
-      <div className="mb-6">
-        <div className="flex items-center gap-6 overflow-x-auto no-scrollbar whitespace-nowrap border-y py-4">
+      <div className="border-y py-4 mb-6">
+        <div className="grid grid-cols-3 gap-3">
 
           {/* No Returns */}
           <button
             onClick={() => setActivePopup("noReturn")}
-            className="flex items-center gap-3 min-w-max"
+            className="flex items-start gap-3 text-left"
           >
-            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+            <div className="w-10 h-10 shrink-0 rounded-full bg-gray-100 flex items-center justify-center">
               <FaUndoAlt className="text-blue-600 text-lg" />
             </div>
 
-            <div className="text-left">
-              <p className="text-sm font-medium">No returns</p>
+            <div className="flex-1">
+              <p className="text-sm font-medium leading-tight">
+                No returns
+              </p>
             </div>
 
-            <FaChevronRight className="text-gray-400 text-sm" />
+            <FaChevronRight className="text-gray-400 text-sm mt-1 shrink-0" />
           </button>
 
           {/* Payment */}
           <button
             onClick={() => setActivePopup("payment")}
-            className="flex items-center gap-3 min-w-max"
+            className="flex items-start gap-3 text-left"
           >
-            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+            <div className="w-10 h-10 shrink-0 rounded-full bg-gray-100 flex items-center justify-center">
               <FaCreditCard className="text-blue-600 text-lg" />
             </div>
 
-            <div className="text-left">
-              <p className="text-sm font-medium">Payment allowed</p>
+            <div className="flex-1">
+              <p className="text-sm font-medium leading-tight">
+                Payment allowed
+              </p>
             </div>
 
-            <FaChevronRight className="text-gray-400 text-sm" />
+            <FaChevronRight className="text-gray-400 text-sm mt-1 shrink-0" />
           </button>
 
           {/* Quality */}
           <button
             onClick={() => setActivePopup("quality")}
-            className="flex items-center gap-3 min-w-max"
+            className="flex items-start gap-3 text-left"
           >
-            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+            <div className="w-10 h-10 shrink-0 rounded-full bg-gray-100 flex items-center justify-center">
               <FaShieldAlt className="text-blue-600 text-lg" />
             </div>
 
-            <div className="text-left">
-              <p className="text-sm font-medium">Quality assured</p>
+            <div className="flex-1">
+              <p className="text-sm font-medium leading-tight">
+                Quality assured
+              </p>
             </div>
 
-            <FaChevronRight className="text-gray-400 text-sm" />
+            <FaChevronRight className="text-gray-400 text-sm mt-1 shrink-0" />
           </button>
 
         </div>
@@ -80,35 +86,36 @@ const ProductInfoBadges = () => {
 
             {activePopup === "noReturn" && (
               <>
-                <h3 className="text-lg font-semibold mb-2">No Returns Policy</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  This product is not eligible for return or exchange once
-                  delivered. Please check product details carefully before
-                  ordering.
+                <h3 className="text-lg font-semibold mb-2">
+                  No Returns Policy
+                </h3>
+                <p className="text-sm text-gray-600">
+                  This product cannot be returned or exchanged after delivery.
+                  Please review product details before ordering.
                 </p>
               </>
             )}
 
             {activePopup === "payment" && (
               <>
-                <h3 className="text-lg font-semibold mb-2">Payment Allowed</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  We support <b>secure online payments</b> via UPI, Debit Card,
-                  Credit Card & Net Banking.
-                  <br />
-                  <span className="text-red-500 font-medium">
-                    Cash on Delivery not available.
-                  </span>
+                <h3 className="text-lg font-semibold mb-2">
+                  Payment Allowed
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Secure online payments via UPI, Debit Card, Credit Card and
+                  Net Banking are supported.
                 </p>
               </>
             )}
 
             {activePopup === "quality" && (
               <>
-                <h3 className="text-lg font-semibold mb-2">Quality Assurance</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Every product goes through strict quality checks to ensure
-                  durability and customer satisfaction.
+                <h3 className="text-lg font-semibold mb-2">
+                  Quality Assurance
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Products are quality-checked to ensure reliability and
+                  customer satisfaction.
                 </p>
               </>
             )}
