@@ -242,7 +242,7 @@ const ProductPage = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={addedToCart}
-                className={`flex-1 py-3 rounded-lg font-medium flex items-center justify-center gap-2 ${
+                className={`flex-1 py-3 rounded-lg font-medium flex items-center justify-center gap-1 ${
                   addedToCart
                     ? "bg-gray-300 cursor-not-allowed"
                     : "bg-black text-white hover:bg-gray-900"
