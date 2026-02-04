@@ -1,9 +1,25 @@
 import React from "react";
 import Footer from "../../components/user/Footer";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+
 
 const RefundPolicy = () => {
+    const navigate = useNavigate();
+
   return (
     <div className="bg-white min-h-screen px-6 md:px-20 py-10 text-gray-700">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow px-4 py-4 flex items-center gap-3">
+  <AiOutlineArrowLeft
+    size={22}
+    className="cursor-pointer"
+    onClick={() => navigate(-1)}
+  />
+  <span className="font-semibold text-lg">Terms & Conditions</span>
+</div>
+
+<div className="h-16" />
+
       <h1 className="text-3xl font-semibold mb-6">
         Refund & Cancellation Policy
       </h1>
