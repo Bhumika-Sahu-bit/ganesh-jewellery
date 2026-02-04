@@ -1,44 +1,6 @@
-// // src/components/Footer.jsx
-// import React from "react";
-
-// const Footer = () => {
-//   return (
-//     <footer className="bg-gray-100 text-gray-800 py-10 px-6 md:px-16 mt-6 border-t border-gray-200">
-//       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
-        
-//         {/* Left Column */}
-//         <div className="flex flex-col gap-2">
-//           <h3 className="font-semibold text-lg">Categories</h3>
-//           <p className="text-gray-600 cursor-pointer hover:text-gray-800">Necklace and Jewellery Sets</p>
-//           {/* Add more categories if needed */}
-//         </div>
-
-//         {/* Center Column */}
-//         <div className="flex flex-col gap-2">
-//           <h3 className="font-semibold text-lg">Help</h3>
-//           <p className="text-gray-600 cursor-pointer hover:text-gray-800">Store Policies</p>
-//           <p className="text-gray-600 cursor-pointer hover:text-gray-800">Track your Order</p>
-//           <p className="text-gray-600 cursor-pointer hover:text-gray-800">Return Policy</p>
-//           <p className="text-gray-600 cursor-pointer hover:text-gray-800">Privacy Policy</p>
-//         </div>
-
-//         {/* Right Column */}
-//         <div className="flex flex-col gap-2">
-//           <h3 className="font-semibold text-lg">Ganesh Art Jewellery</h3>
-//           <p className="text-gray-600">Sarafa Bazar Koteshwar, Mandir Marg, Guna, Madhya Pradesh, 473001</p>
-//           <p className="text-gray-600">Talk to us: +91 9685578996</p>
-//         </div>
-
-//       </div>
-//     </footer>
-//   );
-// };
-
-// export default Footer;
-
-// src/components/Footer.jsx
 import React from "react";
 import { FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -86,18 +48,30 @@ const Footer = () => {
               Help
             </h4>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li className="hover:text-black cursor-pointer transition">
-                Store Policies
+              <li>
+                <Link to="/terms" className="hover:text-black transition">
+                  Terms & Conditions
+                </Link>
               </li>
-              <li className="hover:text-black cursor-pointer transition">
-                Track Your Order
+
+              <li>
+                <Link to="/refund-policy" className="hover:text-black transition">
+                  Refund Policy
+                </Link>
               </li>
-              <li className="hover:text-black cursor-pointer transition">
-                Return Policy
+
+              <li>
+                <Link to="/privacy-policy" className="hover:text-black transition">
+                  Privacy Policy
+                </Link>
               </li>
-              <li className="hover:text-black cursor-pointer transition">
-                Privacy Policy
+
+              <li>
+                <Link to="/contact" className="hover:text-black transition">
+                  Contact Us
+                </Link>
               </li>
+
             </ul>
           </div>
 

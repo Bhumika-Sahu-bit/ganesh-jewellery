@@ -4,6 +4,7 @@ import logo from "../assets/GAT-logo.png";
 import neck4 from "../assets/neck4.webp";
 import neck2 from "../assets/neck2.webp";
 import neck3 from "../assets/neck3.webp";
+import Footer from "../components/user/Footer";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -119,13 +120,14 @@ const Home = () => {
         </section>
 
         {/* Footer */}
-        <footer className="mt-20 sm:mt-28 py-8 sm:py-10 border-t border-gray-200 text-center">
+        {/* <footer className="mt-20 sm:mt-28 py-8 sm:py-10 border-t border-gray-200 text-center">
           <p className="text-gray-500 text-xs sm:text-sm tracking-wide">
             © 2026 Ganesh Art Jewellery — Crafted with Trust & Elegance
           </p>
-        </footer>
-
+        </footer> */}
+        <Footer />
       </div>
+
     </div>
   );
 };

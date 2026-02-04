@@ -1,4 +1,4 @@
-import { Routes, Route , Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 import UserHome from "./pages/user/UserHome.jsx";
 import AdminRoute from "./components/admin/AdminRoute.jsx";
@@ -18,6 +18,9 @@ import Checkout from "./pages/user/Checkout.jsx";
 import OrderSuccess from "./pages/user/OrderSuccess.jsx";
 import MyOrders from "./pages/user/MyOrders.jsx";
 import OrderDetails from "./pages/user/OrderDetails.jsx";
+import PrivacyPolicy from "./pages/user/PrivacyPolicy";
+import TermsConditions from "./pages/user/TermsConditions";
+import RefundPolicy from "./pages/user/RefundPolicy";
 import Home from "./pages/Home";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
@@ -29,75 +32,187 @@ function App() {
 
   return (
     <>
-    <Routes>
-      <Route path="/" element={<Home /> } />
-      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-      <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-
-       <Route
-        path="/"
-        element={
-          token
-            ? role === "admin"
-              ? <Navigate to="/admin/dashboard" />
-              : <Navigate to="/user" />
-            : <Navigate to="/login" />
-        }
-      />
-
-      {/* Category/SubCategory/Product Routes */}
-      <Route path="/user" element={<UserRoute><UserHome /></UserRoute>} />
-      <Route path="/profile" element={<UserRoute><ProfilePage /></UserRoute>} />
-      <Route path="/category/:categoryId/subcategories" element={<UserRoute><SubCategoryPage /></UserRoute>} />
-      <Route path="/aboutus" element={<UserRoute><AboutUs /></UserRoute>} />
-      <Route path="/checkout" element={<UserRoute><Checkout /></UserRoute>} />
-      <Route path="/order-success" element={<UserRoute><OrderSuccess /></UserRoute>} />
-      <Route path="/my-orders" element={<UserRoute><MyOrders /></UserRoute>} />
-      <Route path="/my-orders/:id" element={<UserRoute><OrderDetails /></UserRoute>} />
-      <Route
-        path="/products/sub-category/:subCategoryId"
-        element={
-          <UserRoute>
-            <ProductList />
-          </UserRoute>
-        }
-      />
-      <Route
-        path="/products/category/:categoryId"
-        element={
-          <UserRoute>
-            <ProductList />
-          </UserRoute>
-        } />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
 
         <Route
-        path="/products/:productId"
-        element={
-          <UserRoute>
-            <ProductDetails />
-          </UserRoute>
-        }
-      />
+          path="/"
+          element={
+            token ? (
+              role === "admin" ? (
+                <Navigate to="/admin/dashboard" />
+              ) : (
+                <Navigate to="/user" />
+              )
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
 
-      <Route
-  path="/search/:query"
-  element={
-    <UserRoute>
-      <SearchPage />
-    </UserRoute>
-  }
-/>
+        {/* Category/SubCategory/Product Routes */}
+        <Route
+          path="/user"
+          element={
+            <UserRoute>
+              <UserHome />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <UserRoute>
+              <ProfilePage />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/category/:categoryId/subcategories"
+          element={
+            <UserRoute>
+              <SubCategoryPage />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/aboutus"
+          element={
+              <AboutUs />
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <UserRoute>
+              <Checkout />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/order-success"
+          element={
+            <UserRoute>
+              <OrderSuccess />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/my-orders"
+          element={
+            <UserRoute>
+              <MyOrders />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/my-orders/:id"
+          element={
+            <UserRoute>
+              <OrderDetails />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/products/sub-category/:subCategoryId"
+          element={
+            <UserRoute>
+              <ProductList />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/products/category/:categoryId"
+          element={
+            <UserRoute>
+              <ProductList />
+            </UserRoute>
+          }
+        />
 
-      <Route path="/cart" element={<UserRoute><CartPage /></UserRoute>} />
-      <Route path="/wishlist" element={<UserRoute><WishlistPage /></UserRoute>} />
+        <Route
+          path="/products/:productId"
+          element={
+            <UserRoute>
+              <ProductDetails />
+            </UserRoute>
+          }
+        />
 
-      {/* ===== Catch all unknown routes ===== */}
-      <Route path="*" element={<Navigate to="/" />} />
+        <Route
+          path="/search/:query"
+          element={
+            <UserRoute>
+              <SearchPage />
+            </UserRoute>
+          }
+        />
 
-      <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
-    </Routes>
+        <Route
+          path="/cart"
+          element={
+            <UserRoute>
+              <CartPage />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <UserRoute>
+              <WishlistPage />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/privacy-policy"
+          element={
+             <PrivacyPolicy />
+          }
+        />
+        <Route
+          path="/terms"
+          element={
+              <TermsConditions />
+          }
+        />
+        <Route
+          path="/refund-policy"
+          element={
+              <RefundPolicy />
+          }
+        />
 
-    <ToastContainer
+        {/* ===== Catch all unknown routes ===== */}
+        <Route path="*" element={<Navigate to="/" />} />
+
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+      </Routes>
+
+      <ToastContainer
         position="top-center"
         autoClose={2500}
         hideProgressBar={false}
@@ -110,7 +225,6 @@ function App() {
         theme="dark"
         limit={3}
       />
-
     </>
   );
 }
