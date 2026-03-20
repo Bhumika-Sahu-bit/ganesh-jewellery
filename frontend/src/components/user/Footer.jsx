@@ -109,9 +109,29 @@ const Footer = () => {
           <p>
             © {new Date().getFullYear()} Ganesh Art Jewellery. All rights reserved.
           </p>
-          <p>
+          {/* <p>
             Designed with ❤ for timeless elegance
-          </p>
+          </p> */}
+          <p className="italic text-center md:text-right">
+  Designed by{" "}
+  <a
+    href="https://bhumika-sahu-bit.github.io/my-portfolio/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-medium hover:text-black transition underline-offset-4 hover:underline"
+  >
+    Bhumika Sahu
+  </a>{" "}
+  &{" "}
+  <a
+    href="https://luckygole.github.io/portfolio/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-medium hover:text-black transition underline-offset-4 hover:underline"
+  >
+    Lucky Gole
+  </a>
+</p>
         </div>
 
       </div>
