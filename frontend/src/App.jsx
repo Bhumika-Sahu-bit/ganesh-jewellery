@@ -52,7 +52,7 @@ function App() {
         />
 
         <Route
-          path="/"
+          path="/home"
           element={
             token ? (
               role === "admin" ? (
