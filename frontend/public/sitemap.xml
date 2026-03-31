@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home -->
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/</loc>
+  </url>
+
+  <!-- Public Pages -->
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/login</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/register</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/aboutus</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/privacy-policy</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/terms</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/refund-policy</loc>
+  </url>
+
+  <!-- User Pages -->
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/user</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/profile</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/cart</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/wishlist</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/checkout</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/order-success</loc>
+  </url>
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/my-orders</loc>
+  </url>
+
+  <!-- Admin (optional, Google mostly skip karega) -->
+  <url>
+    <loc>https://ganesh-jewellery.vercel.app/admin/dashboard</loc>
+  </url>
+
+</urlset>
