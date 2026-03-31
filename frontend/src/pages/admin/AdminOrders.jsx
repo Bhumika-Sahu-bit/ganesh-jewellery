@@ -50,6 +50,7 @@ const AdminOrders = () => {
               <p className="text-sm text-gray-600">
                 Qty: {order.items[0]?.quantity}
               </p>
+              <p>Date: {new Date(order.createdAt).toLocaleDateString()}</p>
               <p className="font-semibold">
                 ₹{order.items[0]?.price}
               </p>
