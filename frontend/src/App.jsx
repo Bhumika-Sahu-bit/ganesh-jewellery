@@ -24,6 +24,7 @@ const OrderDetails = lazy(() => import("./pages/user/OrderDetails.jsx"));
 const PrivacyPolicy = lazy(() => import("./pages/user/PrivacyPolicy"));
 const TermsConditions = lazy(() => import("./pages/user/TermsConditions"));
 const RefundPolicy = lazy(() => import("./pages/user/RefundPolicy"));
+const PaymentSuccess = lazy(() => import("./pages/user/PaymentSuccess.jsx"));
 const Home = lazy(() => import("./pages/Home"));
 
 
@@ -115,6 +116,15 @@ function App() {
             element={
               <UserRoute>
                 <Checkout />
+              </UserRoute>
+            }
+          />
+
+          <Route
+            path="/payment-success"
+            element={
+              <UserRoute>
+                <PaymentSuccess />
               </UserRoute>
             }
           />

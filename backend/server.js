@@ -17,7 +17,6 @@ import wishlistRoutes from "./routes/user/wishlistRoutes.js";
 import buyNowRoutes from "./routes/user/buyNowRoutes.js";
 // import addressRoutes from "./routes/user/addressRoutes.js";
 import checkoutRoutes from "./routes/user/checkoutRoutes.js";
-import checkout from "./routes/user/checkout.js";
 import orderRoutes from "./routes/user/orderRoutes.js";
 import adminOrderRoutes from "./routes/admin/orderRoutes.js";
 import notificationRoutes from "./routes/admin/notificationRoutes.js";
@@ -78,7 +77,6 @@ app.use("/api/wishlist", wishlistRoutes);
 app.use("/api/buy-now", buyNowRoutes);
 // app.use("/api/address", addressRoutes);
 app.use("/api/checkout", checkoutRoutes);
-app.use("/api/checkout", checkout);
 app.use("/api/orders", orderRoutes);
 
 app.get("/", (req, res) => {
