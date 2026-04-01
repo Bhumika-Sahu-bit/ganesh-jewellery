@@ -62,10 +62,10 @@ Deployment: Vercel / Backend hosting
 
 🚀 Run Locally
 # Clone repository
-git clone https://github.com/luckygole/Ganesh-art-jewellery
+https://github.com/Bhumika-Sahu-bit/ganesh-jewellery.git
 
 # Navigate to project
-cd Ganesh-art-jewellery
+cd ganesh-jewellery
 
 # Install dependencies
 npm install
@@ -105,7 +105,7 @@ This project demonstrates:
 
 👨‍💻 Author
 
-Laksh Gole
+Bhumika Sahu
 💻 Full Stack Developer | Guna, MP
 
 📬 Connect
