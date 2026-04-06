@@ -258,7 +258,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 // 🔥 Lazy Imports 
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard.jsx"));
-const UserHome = lazy(() => import("./pages/user/UserHome.jsx"));
+// const UserHome = lazy(() => import("./pages/user/UserHome.jsx"));
+const UserHome = lazy(() =>
+  new Promise(resolve => {
+    setTimeout(() => resolve(import("./pages/user/UserHome.jsx")), 2000);
+  })
+);
 const Login = lazy(() => import("./pages/Login.jsx"));
 const Register = lazy(() => import("./pages/Register.jsx"));
 const SubCategoryPage = lazy(() => import("./pages/user/SubCategoryPage.jsx"));
