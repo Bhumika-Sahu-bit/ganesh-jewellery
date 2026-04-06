@@ -298,7 +298,7 @@ const RouteSkeleton = () => (
 // 🔥 Import custom skeletons
 import UserHomeSkeleton from "./pages/skeletons/UserHomeSkeleton";
 import ProductListSkeleton from "./pages/skeletons/ProductListSkeleton";
-import ProductDetailsSkeleton from "./pages/skeletons/ProductDetailsSkeleton";
+import ProductDetailsSkeleton from "./pages/skeletons/ProductDetailSkeleton";
 
 function App() {
   const token = localStorage.getItem("token");
