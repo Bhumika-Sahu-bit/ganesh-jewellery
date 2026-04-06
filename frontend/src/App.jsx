@@ -286,29 +286,19 @@ import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// 🔥 Skeleton Layout for Routes
-const RouteSkeleton = () => {
-  return (
-    <div style={{ padding: "20px" }}>
-      {/* Navbar */}
-      <Skeleton height={50} />
+// 🔥 Common Skeleton (fallback for less important pages)
+const RouteSkeleton = () => (
+  <div className="p-4 space-y-4">
+    <Skeleton height={40} />
+    <Skeleton height={200} />
+    <Skeleton count={5} />
+  </div>
+);
 
-      {/* Banner */}
-      <Skeleton height={200} style={{ marginTop: "15px" }} />
-
-      {/* Cards */}
-      <div style={{ display: "flex", gap: "20px", marginTop: "20px", flexWrap: "wrap" }}>
-        {[...Array(6)].map((_, i) => (
-          <div key={i}>
-            <Skeleton height={150} width={200} />
-            <Skeleton width={150} />
-            <Skeleton width={100} />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+// 🔥 Import custom skeletons
+import UserHomeSkeleton from "./pages/skeletons/UserHomeSkeleton";
+import ProductListSkeleton from "./pages/skeletons/ProductListSkeleton";
+import ProductDetailsSkeleton from "./pages/skeletons/ProductDetailsSkeleton";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -316,12 +306,14 @@ function App() {
 
   return (
     <>
-      {/* 🔥 Suspense Wrapper with Skeleton */}
-      <Suspense fallback={<RouteSkeleton />}>
-        
+      {/* ❌ Global Skeleton removed */}
+      <Suspense fallback={null}>
         <Routes>
+
+          {/* 🏠 Home (NO skeleton) */}
           <Route path="/" element={<Home />} />
 
+          {/* 🔓 Public Routes */}
           <Route
             path="/login"
             element={
@@ -340,101 +332,66 @@ function App() {
             }
           />
 
+          {/* 🔁 Redirect */}
           <Route
             path="/home"
             element={
               token ? (
-                role === "admin" ? (
-                  <Navigate to="/admin/dashboard" />
-                ) : (
-                  <Navigate to="/user" />
-                )
+                role === "admin"
+                  ? <Navigate to="/admin/dashboard" />
+                  : <Navigate to="/user" />
               ) : (
                 <Navigate to="/login" />
               )
             }
           />
 
-          {/* User Routes */}
+          {/* 🔥 USER ROUTES */}
+
+          {/* 🏠 User Home */}
           <Route
             path="/user"
             element={
               <UserRoute>
-                <UserHome />
+                <Suspense fallback={<UserHomeSkeleton />}>
+                  <UserHome />
+                </Suspense>
               </UserRoute>
             }
           />
 
+          {/* 👤 Profile */}
           <Route
             path="/profile"
             element={
               <UserRoute>
-                <ProfilePage />
+                <Suspense fallback={<RouteSkeleton />}>
+                  <ProfilePage />
+                </Suspense>
               </UserRoute>
             }
           />
 
+          {/* 📂 Category */}
           <Route
             path="/category/:categoryId/subcategories"
             element={
               <UserRoute>
-                <SubCategoryPage />
+                <Suspense fallback={<RouteSkeleton />}>
+                  <SubCategoryPage />
+                </Suspense>
               </UserRoute>
             }
           />
 
-          <Route path="/aboutus" element={<AboutUs />} />
-
-          <Route
-            path="/checkout"
-            element={
-              <UserRoute>
-                <Checkout />
-              </UserRoute>
-            }
-          />
-
-          <Route
-            path="/payment-success"
-            element={
-              <UserRoute>
-                <PaymentSuccess />
-              </UserRoute>
-            }
-          />
-
-          <Route
-            path="/order-success"
-            element={
-              <UserRoute>
-                <OrderSuccess />
-              </UserRoute>
-            }
-          />
-
-          <Route
-            path="/my-orders"
-            element={
-              <UserRoute>
-                <MyOrders />
-              </UserRoute>
-            }
-          />
-
-          <Route
-            path="/my-orders/:id"
-            element={
-              <UserRoute>
-                <OrderDetails />
-              </UserRoute>
-            }
-          />
-
+          {/* 🛍️ Product List */}
           <Route
             path="/products/sub-category/:subCategoryId"
             element={
               <UserRoute>
-                <ProductList />
+                <Suspense fallback={<ProductListSkeleton />}>
+                  <ProductList />
+                </Suspense>
               </UserRoute>
             }
           />
@@ -443,52 +400,126 @@ function App() {
             path="/products/category/:categoryId"
             element={
               <UserRoute>
-                <ProductList />
+                <Suspense fallback={<ProductListSkeleton />}>
+                  <ProductList />
+                </Suspense>
               </UserRoute>
             }
           />
 
+          {/* 📦 Product Details */}
           <Route
             path="/products/:productId"
             element={
               <UserRoute>
-                <ProductDetails />
+                <Suspense fallback={<ProductDetailsSkeleton />}>
+                  <ProductDetails />
+                </Suspense>
               </UserRoute>
             }
           />
 
+          {/* 🔍 Search */}
           <Route
             path="/search/:query"
             element={
               <UserRoute>
-                <SearchPage />
+                <Suspense fallback={<ProductListSkeleton />}>
+                  <SearchPage />
+                </Suspense>
               </UserRoute>
             }
           />
 
+          {/* 🛒 Cart */}
           <Route
             path="/cart"
             element={
               <UserRoute>
-                <CartPage />
+                <Suspense fallback={<RouteSkeleton />}>
+                  <CartPage />
+                </Suspense>
+              </UserRoute>
+            }
+          />
+
+          {/* ❤️ Wishlist */}
+          <Route
+            path="/wishlist"
+            element={
+              <UserRoute>
+                <Suspense fallback={<ProductListSkeleton />}>
+                  <WishlistPage />
+                </Suspense>
+              </UserRoute>
+            }
+          />
+
+          {/* 💳 Checkout */}
+          <Route
+            path="/checkout"
+            element={
+              <UserRoute>
+                <Suspense fallback={<RouteSkeleton />}>
+                  <Checkout />
+                </Suspense>
+              </UserRoute>
+            }
+          />
+
+          {/* ✅ Payment */}
+          <Route
+            path="/payment-success"
+            element={
+              <UserRoute>
+                <Suspense fallback={<RouteSkeleton />}>
+                  <PaymentSuccess />
+                </Suspense>
               </UserRoute>
             }
           />
 
           <Route
-            path="/wishlist"
+            path="/order-success"
             element={
               <UserRoute>
-                <WishlistPage />
+                <Suspense fallback={<RouteSkeleton />}>
+                  <OrderSuccess />
+                </Suspense>
               </UserRoute>
             }
           />
 
+          {/* 📦 Orders */}
+          <Route
+            path="/my-orders"
+            element={
+              <UserRoute>
+                <Suspense fallback={<RouteSkeleton />}>
+                  <MyOrders />
+                </Suspense>
+              </UserRoute>
+            }
+          />
+
+          <Route
+            path="/my-orders/:id"
+            element={
+              <UserRoute>
+                <Suspense fallback={<RouteSkeleton />}>
+                  <OrderDetails />
+                </Suspense>
+              </UserRoute>
+            }
+          />
+
+          {/* 📄 Static Pages */}
+          <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsConditions />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
 
-          {/* Admin Route */}
+          {/* 🛠️ Admin */}
           <Route
             path="/admin/dashboard"
             element={
@@ -498,26 +529,14 @@ function App() {
             }
           />
 
-          {/* Catch all */}
+          {/* ❌ Catch all */}
           <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
 
+        </Routes>
       </Suspense>
 
-      {/* Toast */}
-      <ToastContainer
-        position="top-center"
-        autoClose={2500}
-        hideProgressBar={false}
-        newestOnTop
-        rtl={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        pauseOnFocusLoss
-        theme="dark"
-        limit={3}
-      />
+      {/* 🔔 Toast */}
+      <ToastContainer position="top-center" autoClose={2500} theme="dark" />
     </>
   );
 }
