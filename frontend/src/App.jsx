@@ -250,6 +250,7 @@
 
 // export default App;
 
+
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Skeleton from "react-loading-skeleton";
@@ -278,6 +279,12 @@ const RefundPolicy = lazy(() => import("./pages/user/RefundPolicy"));
 const PaymentSuccess = lazy(() => import("./pages/user/PaymentSuccess.jsx"));
 const Home = lazy(() => import("./pages/Home"));
 
+// 🔥 Skeletons
+import UserHomeSkeleton from "./pages/skeletons/UserHomeSkeleton.jsx";
+import ProductListSkeleton from "./pages/skeletons/ProductListSkeleton.jsx";
+import ProductDetailsSkeleton from "./pages/skeletons/ProductDetailSkeleton.jsx";
+
+// 🔥 Routes
 import AdminRoute from "./components/admin/AdminRoute.jsx";
 import UserRoute from "./components/user/UserRoute.jsx";
 import PublicRoute from "./components/PublicRoute.jsx";
@@ -286,7 +293,7 @@ import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// 🔥 Common Skeleton (fallback for less important pages)
+// 🔥 Common fallback
 const RouteSkeleton = () => (
   <div className="p-4 space-y-4">
     <Skeleton height={40} />
@@ -295,248 +302,273 @@ const RouteSkeleton = () => (
   </div>
 );
 
-// 🔥 Import custom skeletons
-import UserHomeSkeleton from "./pages/skeletons/UserHomeSkeleton";
-import ProductListSkeleton from "./pages/skeletons/ProductListSkeleton";
-import ProductDetailsSkeleton from "./pages/skeletons/ProductDetailSkeleton";
-
 function App() {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
 
   return (
     <>
-      {/* ❌ Global Skeleton removed */}
-      <Suspense fallback={null}>
-        <Routes>
+      <Routes>
 
-          {/* 🏠 Home (NO skeleton) */}
-          <Route path="/" element={<Home />} />
+        {/* 🏠 Home */}
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={null}>
+              <Home />
+            </Suspense>
+          }
+        />
 
-          {/* 🔓 Public Routes */}
-          <Route
-            path="/login"
-            element={
+        {/* 🔓 Public Routes */}
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={null}>
               <PublicRoute>
                 <Login />
               </PublicRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          <Route
-            path="/register"
-            element={
+        <Route
+          path="/register"
+          element={
+            <Suspense fallback={null}>
               <PublicRoute>
                 <Register />
               </PublicRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 🔁 Redirect */}
-          <Route
-            path="/home"
-            element={
-              token ? (
-                role === "admin"
-                  ? <Navigate to="/admin/dashboard" />
-                  : <Navigate to="/user" />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
+        {/* 🔁 Redirect */}
+        <Route
+          path="/home"
+          element={
+            token ? (
+              role === "admin"
+                ? <Navigate to="/admin/dashboard" />
+                : <Navigate to="/user" />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
 
-          {/* 🔥 USER ROUTES */}
+        {/* 🔥 USER ROUTES (FIXED) */}
 
-          {/* 🏠 User Home */}
-          <Route
-            path="/user"
-            element={
+        {/* 🏠 User Home */}
+        <Route
+          path="/user"
+          element={
+            <Suspense fallback={<UserHomeSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<UserHomeSkeleton />}>
-                  <UserHome />
-                </Suspense>
+                <UserHome />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 👤 Profile */}
-          <Route
-            path="/profile"
-            element={
+        {/* 👤 Profile */}
+        <Route
+          path="/profile"
+          element={
+            <Suspense fallback={<RouteSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<RouteSkeleton />}>
-                  <ProfilePage />
-                </Suspense>
+                <ProfilePage />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 📂 Category */}
-          <Route
-            path="/category/:categoryId/subcategories"
-            element={
+        {/* 📂 Category */}
+        <Route
+          path="/category/:categoryId/subcategories"
+          element={
+            <Suspense fallback={<RouteSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<RouteSkeleton />}>
-                  <SubCategoryPage />
-                </Suspense>
+                <SubCategoryPage />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 🛍️ Product List */}
-          <Route
-            path="/products/sub-category/:subCategoryId"
-            element={
+        {/* 🛍️ Product List */}
+        <Route
+          path="/products/sub-category/:subCategoryId"
+          element={
+            <Suspense fallback={<ProductListSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<ProductListSkeleton />}>
-                  <ProductList />
-                </Suspense>
+                <ProductList />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          <Route
-            path="/products/category/:categoryId"
-            element={
+        <Route
+          path="/products/category/:categoryId"
+          element={
+            <Suspense fallback={<ProductListSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<ProductListSkeleton />}>
-                  <ProductList />
-                </Suspense>
+                <ProductList />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 📦 Product Details */}
-          <Route
-            path="/products/:productId"
-            element={
+        {/* 📦 Product Details */}
+        <Route
+          path="/products/:productId"
+          element={
+            <Suspense fallback={<ProductDetailsSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<ProductDetailsSkeleton />}>
-                  <ProductDetails />
-                </Suspense>
+                <ProductDetails />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 🔍 Search */}
-          <Route
-            path="/search/:query"
-            element={
+        {/* 🔍 Search */}
+        <Route
+          path="/search/:query"
+          element={
+            <Suspense fallback={<ProductListSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<ProductListSkeleton />}>
-                  <SearchPage />
-                </Suspense>
+                <SearchPage />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 🛒 Cart */}
-          <Route
-            path="/cart"
-            element={
+        {/* 🛒 Cart */}
+        <Route
+          path="/cart"
+          element={
+            <Suspense fallback={<RouteSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<RouteSkeleton />}>
-                  <CartPage />
-                </Suspense>
+                <CartPage />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* ❤️ Wishlist */}
-          <Route
-            path="/wishlist"
-            element={
+        {/* ❤️ Wishlist */}
+        <Route
+          path="/wishlist"
+          element={
+            <Suspense fallback={<ProductListSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<ProductListSkeleton />}>
-                  <WishlistPage />
-                </Suspense>
+                <WishlistPage />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 💳 Checkout */}
-          <Route
-            path="/checkout"
-            element={
+        {/* 💳 Checkout */}
+        <Route
+          path="/checkout"
+          element={
+            <Suspense fallback={<RouteSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<RouteSkeleton />}>
-                  <Checkout />
-                </Suspense>
+                <Checkout />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* ✅ Payment */}
-          <Route
-            path="/payment-success"
-            element={
+        {/* ✅ Payment */}
+        <Route
+          path="/payment-success"
+          element={
+            <Suspense fallback={<RouteSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<RouteSkeleton />}>
-                  <PaymentSuccess />
-                </Suspense>
+                <PaymentSuccess />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          <Route
-            path="/order-success"
-            element={
+        <Route
+          path="/order-success"
+          element={
+            <Suspense fallback={<RouteSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<RouteSkeleton />}>
-                  <OrderSuccess />
-                </Suspense>
+                <OrderSuccess />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 📦 Orders */}
-          <Route
-            path="/my-orders"
-            element={
+        {/* 📦 Orders */}
+        <Route
+          path="/my-orders"
+          element={
+            <Suspense fallback={<RouteSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<RouteSkeleton />}>
-                  <MyOrders />
-                </Suspense>
+                <MyOrders />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          <Route
-            path="/my-orders/:id"
-            element={
+        <Route
+          path="/my-orders/:id"
+          element={
+            <Suspense fallback={<RouteSkeleton />}>
               <UserRoute>
-                <Suspense fallback={<RouteSkeleton />}>
-                  <OrderDetails />
-                </Suspense>
+                <OrderDetails />
               </UserRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* 📄 Static Pages */}
-          <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsConditions />} />
-          <Route path="/refund-policy" element={<RefundPolicy />} />
+        {/* 📄 Static Pages */}
+        <Route
+          path="/aboutus"
+          element={
+            <Suspense fallback={null}>
+              <AboutUs />
+            </Suspense>
+          }
+        />
 
-          {/* 🛠️ Admin */}
-          <Route
-            path="/admin/dashboard"
-            element={
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsConditions />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
+
+        {/* 🛠️ Admin */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <Suspense fallback={<RouteSkeleton />}>
               <AdminRoute>
                 <AdminDashboard />
               </AdminRoute>
-            }
-          />
+            </Suspense>
+          }
+        />
 
-          {/* ❌ Catch all */}
-          <Route path="*" element={<Navigate to="/" />} />
+        {/* ❌ Catch all */}
+        <Route path="*" element={<Navigate to="/" />} />
 
-        </Routes>
-      </Suspense>
+      </Routes>
 
       {/* 🔔 Toast */}
-      <ToastContainer position="top-center" autoClose={2500} theme="dark" />
+       <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop
+        rtl={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        pauseOnFocusLoss
+        theme="dark"
+        limit={3}
+      />
     </>
   );
 }
