@@ -250,44 +250,30 @@
 
 // export default App;
 
-
 import { Routes, Route, Navigate } from "react-router-dom";
-import { lazy, Suspense } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
-// 🔥 Lazy Imports 
-const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard.jsx"));
-// const UserHome = lazy(() => import("./pages/user/UserHome.jsx"));
-const UserHome = lazy(() =>
-  new Promise(resolve => {
-    setTimeout(() => resolve(import("./pages/user/UserHome.jsx")), 2000);
-  })
-);
-const Login = lazy(() => import("./pages/Login.jsx"));
-const Register = lazy(() => import("./pages/Register.jsx"));
-const SubCategoryPage = lazy(() => import("./pages/user/SubCategoryPage.jsx"));
-const ProductList = lazy(() => import("./pages/user/ProductList.jsx"));
-const ProductDetails = lazy(() => import("./pages/user/ProductPage.jsx"));
-const CartPage = lazy(() => import("./pages/user/CartPage.jsx"));
-const WishlistPage = lazy(() => import("./pages/user/WishlistPage.jsx"));
-const SearchPage = lazy(() => import("./pages/user/SearchPage.jsx"));
-const ProfilePage = lazy(() => import("./pages/user/ProfilePage.jsx"));
-const AboutUs = lazy(() => import("./pages/user/AboutUs.jsx"));
-const Checkout = lazy(() => import("./pages/user/Checkout.jsx"));
-const OrderSuccess = lazy(() => import("./pages/user/OrderSuccess.jsx"));
-const MyOrders = lazy(() => import("./pages/user/MyOrders.jsx"));
-const OrderDetails = lazy(() => import("./pages/user/OrderDetails.jsx"));
-const PrivacyPolicy = lazy(() => import("./pages/user/PrivacyPolicy"));
-const TermsConditions = lazy(() => import("./pages/user/TermsConditions"));
-const RefundPolicy = lazy(() => import("./pages/user/RefundPolicy"));
-const PaymentSuccess = lazy(() => import("./pages/user/PaymentSuccess.jsx"));
-const Home = lazy(() => import("./pages/Home"));
-
-// 🔥 Skeletons
-import UserHomeSkeleton from "./pages/skeletons/UserHomeSkeleton.jsx";
-import ProductListSkeleton from "./pages/skeletons/ProductListSkeleton.jsx";
-import ProductDetailsSkeleton from "./pages/skeletons/ProductDetailSkeleton.jsx";
+// 🔥 Normal Imports (NO lazy)
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import UserHome from "./pages/user/UserHome.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import SubCategoryPage from "./pages/user/SubCategoryPage.jsx";
+import ProductList from "./pages/user/ProductList.jsx";
+import ProductDetails from "./pages/user/ProductPage.jsx";
+import CartPage from "./pages/user/CartPage.jsx";
+import WishlistPage from "./pages/user/WishlistPage.jsx";
+import SearchPage from "./pages/user/SearchPage.jsx";
+import ProfilePage from "./pages/user/ProfilePage.jsx";
+import AboutUs from "./pages/user/AboutUs.jsx";
+import Checkout from "./pages/user/Checkout.jsx";
+import OrderSuccess from "./pages/user/OrderSuccess.jsx";
+import MyOrders from "./pages/user/MyOrders.jsx";
+import OrderDetails from "./pages/user/OrderDetails.jsx";
+import PrivacyPolicy from "./pages/user/PrivacyPolicy";
+import TermsConditions from "./pages/user/TermsConditions";
+import RefundPolicy from "./pages/user/RefundPolicy";
+import PaymentSuccess from "./pages/user/PaymentSuccess.jsx";
+import Home from "./pages/Home";
 
 // 🔥 Routes
 import AdminRoute from "./components/admin/AdminRoute.jsx";
@@ -298,15 +284,6 @@ import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// 🔥 Common fallback
-const RouteSkeleton = () => (
-  <div className="p-4 space-y-4">
-    <Skeleton height={40} />
-    <Skeleton height={200} />
-    <Skeleton count={5} />
-  </div>
-);
-
 function App() {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
@@ -316,35 +293,24 @@ function App() {
       <Routes>
 
         {/* 🏠 Home */}
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={null}>
-              <Home />
-            </Suspense>
-          }
-        />
+        <Route path="/" element={<Home />} />
 
         {/* 🔓 Public Routes */}
         <Route
           path="/login"
           element={
-            <Suspense fallback={null}>
-              <PublicRoute>
-                <Login />
-              </PublicRoute>
-            </Suspense>
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
           }
         />
 
         <Route
           path="/register"
           element={
-            <Suspense fallback={null}>
-              <PublicRoute>
-                <Register />
-              </PublicRoute>
-            </Suspense>
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
           }
         />
 
@@ -362,41 +328,32 @@ function App() {
           }
         />
 
-        {/* 🔥 USER ROUTES (FIXED) */}
+        {/* 🔥 USER ROUTES */}
 
-        {/* 🏠 User Home */}
         <Route
           path="/user"
           element={
-            <Suspense fallback={<UserHomeSkeleton />}>
-              <UserRoute>
-                <UserHome />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <UserHome />
+            </UserRoute>
           }
         />
 
-        {/* 👤 Profile */}
         <Route
           path="/profile"
           element={
-            <Suspense fallback={<RouteSkeleton />}>
-              <UserRoute>
-                <ProfilePage />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <ProfilePage />
+            </UserRoute>
           }
         />
 
-        {/* 📂 Category */}
         <Route
           path="/category/:categoryId/subcategories"
           element={
-            <Suspense fallback={<RouteSkeleton />}>
-              <UserRoute>
-                <SubCategoryPage />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <SubCategoryPage />
+            </UserRoute>
           }
         />
 
@@ -404,22 +361,18 @@ function App() {
         <Route
           path="/products/sub-category/:subCategoryId"
           element={
-            <Suspense fallback={<ProductListSkeleton />}>
-              <UserRoute>
-                <ProductList />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <ProductList />
+            </UserRoute>
           }
         />
 
         <Route
           path="/products/category/:categoryId"
           element={
-            <Suspense fallback={<ProductListSkeleton />}>
-              <UserRoute>
-                <ProductList />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <ProductList />
+            </UserRoute>
           }
         />
 
@@ -427,11 +380,9 @@ function App() {
         <Route
           path="/products/:productId"
           element={
-            <Suspense fallback={<ProductDetailsSkeleton />}>
-              <UserRoute>
-                <ProductDetails />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <ProductDetails />
+            </UserRoute>
           }
         />
 
@@ -439,11 +390,9 @@ function App() {
         <Route
           path="/search/:query"
           element={
-            <Suspense fallback={<ProductListSkeleton />}>
-              <UserRoute>
-                <SearchPage />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <SearchPage />
+            </UserRoute>
           }
         />
 
@@ -451,11 +400,9 @@ function App() {
         <Route
           path="/cart"
           element={
-            <Suspense fallback={<RouteSkeleton />}>
-              <UserRoute>
-                <CartPage />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <CartPage />
+            </UserRoute>
           }
         />
 
@@ -463,11 +410,9 @@ function App() {
         <Route
           path="/wishlist"
           element={
-            <Suspense fallback={<ProductListSkeleton />}>
-              <UserRoute>
-                <WishlistPage />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <WishlistPage />
+            </UserRoute>
           }
         />
 
@@ -475,11 +420,9 @@ function App() {
         <Route
           path="/checkout"
           element={
-            <Suspense fallback={<RouteSkeleton />}>
-              <UserRoute>
-                <Checkout />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <Checkout />
+            </UserRoute>
           }
         />
 
@@ -487,22 +430,18 @@ function App() {
         <Route
           path="/payment-success"
           element={
-            <Suspense fallback={<RouteSkeleton />}>
-              <UserRoute>
-                <PaymentSuccess />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <PaymentSuccess />
+            </UserRoute>
           }
         />
 
         <Route
           path="/order-success"
           element={
-            <Suspense fallback={<RouteSkeleton />}>
-              <UserRoute>
-                <OrderSuccess />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <OrderSuccess />
+            </UserRoute>
           }
         />
 
@@ -510,35 +449,23 @@ function App() {
         <Route
           path="/my-orders"
           element={
-            <Suspense fallback={<RouteSkeleton />}>
-              <UserRoute>
-                <MyOrders />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <MyOrders />
+            </UserRoute>
           }
         />
 
         <Route
           path="/my-orders/:id"
           element={
-            <Suspense fallback={<RouteSkeleton />}>
-              <UserRoute>
-                <OrderDetails />
-              </UserRoute>
-            </Suspense>
+            <UserRoute>
+              <OrderDetails />
+            </UserRoute>
           }
         />
 
         {/* 📄 Static Pages */}
-        <Route
-          path="/aboutus"
-          element={
-            <Suspense fallback={null}>
-              <AboutUs />
-            </Suspense>
-          }
-        />
-
+        <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/refund-policy" element={<RefundPolicy />} />
@@ -547,11 +474,9 @@ function App() {
         <Route
           path="/admin/dashboard"
           element={
-            <Suspense fallback={<RouteSkeleton />}>
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            </Suspense>
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
           }
         />
 
@@ -561,12 +486,11 @@ function App() {
       </Routes>
 
       {/* 🔔 Toast */}
-       <ToastContainer
+      <ToastContainer
         position="top-center"
         autoClose={2500}
         hideProgressBar={false}
         newestOnTop
-        rtl={false}
         closeOnClick
         pauseOnHover
         draggable
