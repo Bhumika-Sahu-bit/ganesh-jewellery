@@ -7,7 +7,7 @@ import { notifyError , notifySuccess } from "../../utils/notify.js";
 const LatestCollection = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [wishlistAdded, setWishlistAdded] = useState({});
   const [cartAdded, setCartAdded] = useState({});
 
@@ -17,7 +17,7 @@ const LatestCollection = () => {
 
   const fetchProducts = async () => {
     try {
-      setLoading(true);
+        // setLoading(true);
 
       const res = await api.get("/products");
       const productList = res.data || [];
@@ -44,7 +44,8 @@ const LatestCollection = () => {
     } catch (err) {
       console.error("Failed to fetch latest collection:", err);
     } finally {
-      setLoading(false);
+     // setLoading(false);
+      console.log("Latest collection loaded:", products);
     }
   };
 
@@ -76,12 +77,7 @@ const LatestCollection = () => {
     }
   };
 
-  if (loading)
-    return (
-      <p className="text-center mt-16 text-gray-500 text-lg animate-pulse">
-        Loading Latest Collection...
-      </p>
-    );
+  
 
   if (!products.length)
     return (

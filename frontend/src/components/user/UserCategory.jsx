@@ -4,7 +4,7 @@ import api from "../../api/axios.js";
 
 const UserCategory = () => {
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,7 +15,8 @@ const UserCategory = () => {
       } catch (err) {
         console.error("Failed to load categories", err);
       } finally {
-        setLoading(false);
+        // setLoading(false);
+        console.log("Categories loaded:", categories);
       }
     };
     fetchCategories();
@@ -38,13 +39,7 @@ const UserCategory = () => {
   }
 };
 
-  if (loading) {
-    return (
-      <p className="text-center my-16 text-gray-500 text-lg animate-pulse">
-        Loading categories...
-      </p>
-    );
-  }
+ 
 
   return (
     <section className="mt-10 px-4 sm:px-6 md:px-10 lg:px-14">
