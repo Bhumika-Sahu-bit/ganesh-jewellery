@@ -132,7 +132,7 @@ const Checkout = () => {
     }
   };
 
-  if (loading) return <p className="text-center mt-20">Loading...</p>;
+  if (loading) return <p className="text-center mt-20">Loading Checkout</p>;
   if (!product) return <p className="text-center mt-20">Product not found</p>;
 
   return (

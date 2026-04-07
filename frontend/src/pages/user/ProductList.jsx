@@ -8,7 +8,7 @@ import Footer from "../../components/user/Footer";
 import BottomFooter from "../../components/user/BottomFooter";
 import Sidebar from "../../components/user/Sidebar";
 import { notifySuccess, notifyError } from "../../utils/notify.js";
-import ProductDetailSkeleton from "../skeletons/ProductDetailSkeleton.jsx";
+import ProductListSkeleton from "../skeletons/ProductListSkeleton.jsx";
 const ProductList = () => {
   const { categoryId, subCategoryId } = useParams();
   const navigate = useNavigate();
@@ -94,7 +94,7 @@ const ProductList = () => {
 
   if (loading) {
     return (
-      <ProductDetailSkeleton />
+      <ProductListSkeleton />
     );
   }
 

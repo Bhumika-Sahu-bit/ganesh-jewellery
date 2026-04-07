@@ -3,12 +3,15 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const ProductListSkeleton = () => {
   return (
-    <div className="p-4 space-y-6">
+    <div className="max-w-7xl mx-auto px-4 py-4 space-y-6">
 
-      {/* 🔥 Title / Filter Bar */}
+      {/* 🔥 Navbar */}
+      <Skeleton height={50} className="w-full rounded-lg" />
+
+      {/* 🔥 Title + Filter */}
       <div className="flex justify-between items-center">
         <Skeleton width={150} height={20} />
-        <Skeleton width={100} height={30} />
+        <Skeleton width={100} height={35} className="rounded-md" />
       </div>
 
       {/* 🔥 Product Grid */}
@@ -17,7 +20,10 @@ const ProductListSkeleton = () => {
           <div key={i} className="space-y-2">
             
             {/* Image */}
-            <Skeleton height={160} className="rounded-lg sm:h-[180px] md:h-[200px]" />
+            <Skeleton 
+              height={150} 
+              className="w-full rounded-lg sm:h-[170px] md:h-[190px] lg:h-[210px]" 
+            />
 
             {/* Title */}
             <Skeleton height={12} width="80%" />

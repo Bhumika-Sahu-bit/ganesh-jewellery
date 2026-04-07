@@ -3,30 +3,58 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const ProductDetailsSkeleton = () => {
   return (
-    <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="max-w-7xl mx-auto px-4 py-4 space-y-6">
 
-      {/* 🔥 Left Image Section */}
-      <div>
-        <Skeleton height={300} className="rounded-xl md:h-[400px]" />
-        <div className="flex gap-2 mt-3">
-          {[...Array(4)].map((_, i) => (
-            <Skeleton key={i} width={60} height={60} />
-          ))}
+      {/* 🔥 Navbar */}
+      <Skeleton height={50} className="w-full rounded-lg" />
+
+      {/* 🔥 Product Details Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        {/* 🔥 Left: Image Section */}
+        <div>
+          {/* Main Image */}
+          <Skeleton 
+            height={280} 
+            className="w-full rounded-xl sm:h-[320px] md:h-[380px] lg:h-[420px]" 
+          />
+
+          {/* Thumbnail Images */}
+          <div className="flex gap-2 mt-3">
+            {[...Array(4)].map((_, i) => (
+              <Skeleton 
+                key={i} 
+                width={60} 
+                height={60} 
+                className="rounded-md sm:w-[70px] sm:h-[70px]" 
+              />
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* 🔥 Right Content Section */}
-      <div className="space-y-4">
-        <Skeleton height={25} width="80%" />
-        <Skeleton height={20} width="60%" />
-        <Skeleton height={20} width="40%" />
+        {/* 🔥 Right: Content Section */}
+        <div className="space-y-4">
 
-        <Skeleton height={30} width="30%" />
+          {/* Title */}
+          <Skeleton height={24} width="80%" />
 
-        <Skeleton height={40} width="100%" />
-        <Skeleton height={40} width="100%" />
+          {/* Subtitle / Brand */}
+          <Skeleton height={18} width="60%" />
 
-        <Skeleton count={4} />
+          {/* Rating */}
+          <Skeleton height={18} width="40%" />
+
+          {/* Price */}
+          <Skeleton height={30} width="30%" />
+
+          {/* Buttons */}
+          <Skeleton height={45} className="w-full rounded-md" />
+          <Skeleton height={45} className="w-full rounded-md" />
+
+          {/* Description */}
+          <Skeleton count={4} />
+
+        </div>
       </div>
 
     </div>
