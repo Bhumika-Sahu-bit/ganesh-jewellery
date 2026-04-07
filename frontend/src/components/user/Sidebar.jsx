@@ -45,13 +45,13 @@ const Sidebar = ({ isOpen, onClose }) => {
     navigate("/login");
   };
 
-  // if (!user) {
-  //   return (
-  //     <div className="min-h-screen flex items-center justify-center">
-  //       <p className="text-gray-500 hidden">Loading Profile</p>
-  //     </div>
-  //   );
-  // }
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-500 hidden">Loading Profile</p>
+      </div>
+    );
+  }
 
   const SidebarItem = ({ label, icon, path, onClick, iconBg }) => (
     <div
