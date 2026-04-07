@@ -16,7 +16,7 @@ const UserHome = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    },0);
+    }, 2000);
   }, []);
 
   if (loading) {
