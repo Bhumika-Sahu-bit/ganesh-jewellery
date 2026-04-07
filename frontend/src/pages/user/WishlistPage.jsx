@@ -5,6 +5,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Footer from "../../components/user/Footer";
 import BottomFooter from "../../components/user/BottomFooter";
+import ProductListSkeleton from "../skeletons/ProductListSkeleton.jsx";
 
 const WishlistPage = () => {
   const navigate = useNavigate();
@@ -49,14 +50,14 @@ const WishlistPage = () => {
       }
     } catch (err) {
       console.error("Wishlist toggle error:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
   if (loading)
     return (
-      <p className="text-center mt-10 text-gray-500 text-lg animate-pulse">
-        Loading wishlist...
-      </p>
+      <ProductListSkeleton />
     );
 
   if (!loading && wishlistItems.length === 0)

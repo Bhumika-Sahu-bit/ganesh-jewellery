@@ -7,6 +7,7 @@ import Navbar from "../../components/user/Navbar";
 import Footer from "../../components/user/Footer";
 import BottomFooter from "../../components/user/BottomFooter";
 import Sidebar from "../../components/user/Sidebar";
+import CommonSkeleton from "../skeletons/CommonSkeleton.jsx";
 
 import {
   FiEdit,
@@ -65,6 +66,7 @@ const ProfilePage = () => {
       } finally {
         setLoading(false);
       }
+
     };
 
     fetchData();
@@ -101,6 +103,8 @@ const ProfilePage = () => {
     } catch (err) {
       console.log(err);
       notifyError("Something wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -116,7 +120,7 @@ const ProfilePage = () => {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <CommonSkeleton />;
 
   return (
     <>

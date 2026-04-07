@@ -7,6 +7,7 @@ import Navbar from "../../components/user/Navbar";
 import Footer from "../../components/user/Footer";
 import BottomFooter from "../../components/user/BottomFooter";
 import Sidebar from "../../components/user/Sidebar";
+import ProductListSkeleton from "../skeletons/ProductListSkeleton.jsx";
 
 const SearchPage = () => {
   const { query } = useParams();
@@ -74,6 +75,8 @@ const SearchPage = () => {
       }
     } catch (err) {
       console.error("Wishlist error:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -81,6 +84,7 @@ const SearchPage = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
+          <ProductListSkeleton />
         <p className="text-lg text-gray-600 animate-pulse">
           Searching for “{query}” 🔍
         </p>

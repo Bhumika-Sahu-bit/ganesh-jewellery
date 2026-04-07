@@ -8,6 +8,7 @@ import Footer from "../../components/user/Footer";
 import BottomFooter from "../../components/user/BottomFooter";
 import Sidebar from "../../components/user/Sidebar";
 import { notifySuccess, notifyError } from "../../utils/notify.js";
+import ProductDetailSkeleton from "../skeletons/ProductDetailSkeleton.jsx";
 const ProductList = () => {
   const { categoryId, subCategoryId } = useParams();
   const navigate = useNavigate();
@@ -93,9 +94,7 @@ const ProductList = () => {
 
   if (loading) {
     return (
-      <p className="text-center mt-20 text-gray-500 animate-pulse">
-        Loading Products...
-      </p>
+      <ProductDetailSkeleton />
     );
   }
 

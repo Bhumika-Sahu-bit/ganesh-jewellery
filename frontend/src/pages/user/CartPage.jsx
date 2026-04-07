@@ -6,6 +6,7 @@ import Navbar from "../../components/user/Navbar";
 import Footer from "../../components/user/Footer";
 import BottomFooter from "../../components/user/BottomFooter";
 import Sidebar from "../../components/user/Sidebar";
+import ProductListSkeleton from "../skeletons/ProductListSkeleton.jsx";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -80,6 +81,8 @@ const CartPage = () => {
       }
     } catch (err) {
       console.error("Wishlist toggle failed", err);
+    } finally {      
+      setLoading(false);
     }
   };
 
@@ -98,9 +101,7 @@ const CartPage = () => {
 
   if (loading)
     return (
-      <p className="text-center mt-10 text-gray-500 text-lg animate-pulse">
-        Loading cart...
-      </p>
+      <ProductListSkeleton />
     );
 
   if (!loading && cartItems.length === 0)

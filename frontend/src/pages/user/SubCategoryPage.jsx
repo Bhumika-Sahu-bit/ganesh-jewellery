@@ -6,6 +6,7 @@ import Footer from "../../components/user/Footer";
 import BottomFooter from "../../components/user/BottomFooter";
 import Sidebar from "../../components/user/Sidebar";
 import { FaArrowLeft } from "react-icons/fa";
+import ProductListSkeleton from "../skeletons/ProductListSkeleton";
 
 const SubCategoryPage = () => {
   const { categoryId } = useParams();
@@ -33,11 +34,7 @@ const SubCategoryPage = () => {
   }, [categoryId]);
 
   if (loading) {
-    return (
-      <p className="text-center mt-20 text-gray-400 text-lg animate-pulse">
-        Loading...
-      </p>
-    );
+    return <ProductListSkeleton />;
   }
 
   return (

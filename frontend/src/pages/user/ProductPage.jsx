@@ -14,6 +14,7 @@ import Footer from "../../components/user/Footer";
 import BottomFooter from "../../components/user/BottomFooter";
 import Sidebar from "../../components/user/Sidebar";
 import ProductInfoBadges from "../../components/user/ProductInfoBadges";
+import ProductListSkeleton from "../skeletons/ProductListSkeleton";
 
 import {
   notifySuccess,
@@ -130,7 +131,7 @@ const ProductPage = () => {
   }
   }
 
-  if (loading) return <p className="text-center mt-10">Loading product...</p>;
+  if (loading) return <ProductListSkeleton />;
   if (!product) return <p className="text-center mt-10">Product not found</p>;
 
   const finalPrice = product.discount
