@@ -3,39 +3,46 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const UserHomeSkeleton = () => {
   return (
-    <div className="p-4 space-y-6">
+    <div className="max-w-7xl mx-auto px-4 py-4 space-y-6">
 
       {/* 🔥 Navbar */}
-      <div className="flex justify-between items-center">
-        <Skeleton width={120} height={30} />
-        <div className="flex gap-4">
-          <Skeleton width={30} height={30} circle />
-          <Skeleton width={30} height={30} circle />
-          <Skeleton width={30} height={30} circle />
-        </div>
-      </div>
+      <Skeleton height={50} className="w-full rounded-lg" />
 
-      {/* 🔥 Slider / Banner */}
-      <Skeleton height={180} className="w-full rounded-xl sm:h-[220px] md:h-[280px]" />
+      {/* 🔥 Slider */}
+      <Skeleton 
+        height={180} 
+        className="w-full rounded-lg sm:h-[220px] md:h-[260px] lg:h-[300px]" 
+      />
 
-      {/* 🔥 Categories */}
-      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4">
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className="flex flex-col items-center gap-2">
-            <Skeleton circle width={50} height={50} />
-            <Skeleton width={40} height={10} />
-          </div>
+      {/* 🔥 Categories (4 per row responsive) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {[...Array(4)].map((_, i) => (
+          <Skeleton 
+            key={i} 
+            height={80} 
+            className="w-full rounded-lg sm:h-[90px] md:h-[100px]" 
+          />
         ))}
       </div>
 
-      {/* 🔥 Rectangle Banner */}
-      <Skeleton height={120} className="w-full rounded-xl sm:h-[150px] md:h-[180px]" />
+      {/* 🔥 Banner */}
+      <Skeleton 
+        height={120} 
+        className="w-full rounded-lg sm:h-[140px] md:h-[160px] lg:h-[180px]" 
+      />
 
       {/* 🔥 Product Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {[...Array(10)].map((_, i) => (
           <div key={i} className="space-y-2">
-            <Skeleton height={150} className="rounded-lg sm:h-[180px] md:h-[200px]" />
+            
+            {/* Image */}
+            <Skeleton 
+              height={140} 
+              className="w-full rounded-lg sm:h-[160px] md:h-[180px] lg:h-[200px]" 
+            />
+
+            {/* Text lines */}
             <Skeleton height={12} width="80%" />
             <Skeleton height={12} width="60%" />
             <Skeleton height={12} width="40%" />
