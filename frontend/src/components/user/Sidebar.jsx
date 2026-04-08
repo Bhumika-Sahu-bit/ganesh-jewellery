@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserHomeSkeleton from "../skeletons/UserHomeSkeleton.jsx";
 
 import {
   AiFillHome,
@@ -47,9 +48,13 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-500 ">Loading Profile</p>
-      </div>
+      // <div className="min-h-screen flex items-center justify-center">
+      //   {/* <p className="text-gray-500 ">Loading Profile</p> */}
+      //   <UserHomeSkeleton />
+
+      // </div>
+
+      <UserHomeSkeleton />
     );
   }
 
