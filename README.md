@@ -109,9 +109,9 @@ Bhumika Sahu
 💻 Full Stack Developer | Guna, MP
 
 📬 Connect
-🌐 Portfolio https://portfolio-2026-ten-gamma.vercel.app/
-📧 golelaksh@example.com
-💼 LinkedIn https://www.linkedin.com/in/luckygole/
+🌐 Portfolio https://portfolio-ebon-rho-fi2sxp0edj.vercel.app/
+📧 bhumi16124@gmail.com
+
 
 
 © 2026 Bhumika Sahu. Built with ❤️
