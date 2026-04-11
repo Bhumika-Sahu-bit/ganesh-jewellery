@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import { useNavigate , Link } from "react-router-dom";
 import { BsCartCheck } from "react-icons/bs";

@@ -22,6 +22,11 @@ export const checkoutBuyNow = async (req, res) => {
       return res.status(404).json({ message: "Address not found" });
     }
 
+    // 🧠 Decide payment status
+    const paymentStatus =
+      paymentMethod === "COD" ? "Pending" : "Paid";
+
+
     // 3️⃣ Create Order
     const order = await Order.create({
       userId,
@@ -42,7 +47,7 @@ export const checkoutBuyNow = async (req, res) => {
       },
       totalAmount: product.finalPrice,
       paymentMethod,
-      paymentStatus: paymentMethod === "COD" ? "Pending" : "Paid",
+      paymentStatus,
       orderStatus: "Placed",
       paymentId: paymentId || null,
     });
