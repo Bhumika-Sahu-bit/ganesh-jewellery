@@ -22,28 +22,51 @@ Category & subcategory structure
 This project demonstrates end-to-end product development, from UI to backend logic.
 
 ✨ Core Features
+
 🛍️ User Features
+
 🛒 Browse products by category & subcategory
+
 🔍 Product detail pages
+
 👤 User authentication (Login/Signup)
+
 🔔 Notifications system
+
 🧾 Order placement & tracking
+
 💳 Secure payment integration
+
 ⚙️ Admin Dashboard
+
 📦 Product management (Add/Edit/Delete)
+
 🗂️ Category & subcategory management
+
 📊 Order management system
+
 👥 User management
+
 🔔 Notification control
+
 📈 Full control over platform data
+
 🛠️ Tech Stack
+
 Frontend: React / Next.js
+
 Styling: Tailwind CSS / CSS
+
 Backend: Node.js, Express.js
+
 Database: MongoDB
+
 Authentication: JWT / Session-based
+
 Payments: Integrated payment gateway
+
 Deployment: Vercel / Backend hosting
+
 📸 Screenshots
 
 🏠 Homepage
@@ -73,34 +96,57 @@ npm install
 # Start development server
 npm run dev
 🧠 System Architecture
+
 Frontend communicates with backend APIs
+
 Backend handles authentication, orders, and logic
+
 MongoDB stores users, products, and orders
+
 Payment gateway processes transactions securely
+
 🚀 Advanced Functionalities
+
 🔐 Authentication & authorization system
+
 🛒 Full shopping workflow
+
 💳 Real payment integration
+
 📊 Admin dashboard control panel
+
 🔔 Notification system
+
 🧩 Modular and scalable structure
+
 📌 Why This Project Stands Out
 
 This project demonstrates:
 
 💼 Real client project experience
+
 🔥 Production-level full-stack development
+
 💳 Payment gateway integration
+
 🧠 Complex system design
+
 ⚙️ Admin dashboard architecture
+
 📈 Why Recruiters Love This
 
 ✅ Real-world production project
+
 ✅ Payment integration (high-value skill)
+
 ✅ Admin dashboard (advanced feature)
+
 ✅ Full-stack architecture
+
 ✅ Scalable and structured code
+
 ✅ Business logic implementation
+
 ✅ Client-level project delivery
 
 👨‍💻 Author
@@ -109,7 +155,9 @@ Bhumika Sahu
 💻 Full Stack Developer | Guna, MP
 
 📬 Connect
+
 🌐 Portfolio https://portfolio-ebon-rho-fi2sxp0edj.vercel.app/
+
 📧 bhumi16124@gmail.com
 
 
