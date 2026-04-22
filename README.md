@@ -1,4 +1,4 @@
-💎 Ganesh Art Jewellery – Full Stack E-Commerce Platform
+<h1>💎 Ganesh Art Jewellery – Full Stack E-Commerce Platform </h1>
 
 Ganesh Art Jewellery is a fully functional production-ready e-commerce platform built for a real client, featuring complete shopping, payment, and admin management capabilities.
 
