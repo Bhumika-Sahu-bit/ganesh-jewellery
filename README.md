@@ -82,6 +82,8 @@ Deployment: Vercel / Backend hosting
 
 
 ⚙️ Admin Dashboard
+<img width="1899" height="912" alt="Screenshot 2026-04-23 123805" src="https://github.com/user-attachments/assets/057b09e1-2e97-4f0f-a163-e67f46a3e6c8" />
+
 
 🚀 Run Locally
 # Clone repository
